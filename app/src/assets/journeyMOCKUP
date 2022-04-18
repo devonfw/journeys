@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Getting Started | Hello World",
+    "steps": [
+      {
+        "id": 1,
+        "isVisited": true,
+        "content": "Welcome to the Introduction this is going to be nonsense"
+      },
+      {
+        "id": 2,
+        "isVisited": false,
+        "content": "Bliblablub"
+      },
+      {
+        "id": 3,
+        "isVisited": false,
+        "content": "Step one of your Journey is accomplished"
+      }
+    ],
+    "currentStep": 1,
+    "amountSteps": 3,
+    "journeyFinished": false
+  },
+  {
+    "id": 2,
+    "title": "2nd Journey",
+    "steps": [
+      {
+        "id": 1,
+        "isVisited": true,
+        "content": "Welcome to your second journey"
+      },
+      {
+        "id": 2,
+        "isVisited": false,
+        "content": "Bliblablub"
+      },
+      {
+        "id": 3,
+        "isVisited": false,
+        "content": "Step two of your Journey is accomplished"
+      }
+    ],
+    "currentStep": 1,
+    "amountSteps": 3,
+    "journeyFinished": false
+  },
+    {
+    "id": 3,
+    "title": "Last Journey",
+    "steps": [
+      {
+        "id": 1,
+        "isVisited": false,
+        "content": "Welcome to your last journey"
+      },
+      {
+        "id": 2,
+        "isVisited": false,
+        "content": "asdfknjlsakdfdsf"
+      },
+      {
+        "id": 3,
+        "isVisited": false,
+        "content": "FIN"
+      }
+    ],
+    "currentStep": 1,
+    "amountSteps": 3,
+    "journeyFinished": false
+  }
+]

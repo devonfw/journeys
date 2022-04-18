@@ -1,0 +1,7 @@
+<h2>Journeys List</h2>
+<h3>{{error}}</h3>
+<ul>
+  <li *ngFor="let journey of journeys" (click)="onSelect(journey)" [class.selected]="isSelected(journey)">
+    <span>{{journey.title}}</span>
+  </li >
+</ul>

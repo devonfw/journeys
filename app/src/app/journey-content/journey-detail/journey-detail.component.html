@@ -1,0 +1,14 @@
+<div>
+<h2>Journey-Details: {{journeyId}}</h2>
+<ul>
+  <li *ngFor="let journey of journeys" (click)="onSelect(journey)" [class.selected]="isSelected(journey)">
+    <span>{{journey.steps}}</span>
+  </li >
+</ul>
+</div >
+<p>
+  <button (click)="showOverview()"> Overview </button>
+</p>
+<router-outlet></router-outlet>
+<button *ngIf="!isFirstStep(journeyId)" type="button" (click)="goPrevious()" >< Previous</button>
+<button *ngIf="!isLastStep(journeyId)" type="button" (click)="goNext()">Next ></button>
