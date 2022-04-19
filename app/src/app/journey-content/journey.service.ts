@@ -1,4 +1,4 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, throwError, catchError} from 'rxjs';
 import { Journey, Step} from './journeys';
 import { MessageService} from '../message.service';
@@ -31,12 +31,13 @@ export class JourneyService {
   }
 
   getJourneys(): Journey[] {
+    let journeys: Promise<Journey[]>;
     //this.fetchJourneys().subscribe({next: (journey: Journey[]) => this.journeys = journey, error: (error: HttpErrorResponse) => {this.errorHandler(error)}});
-    this.fetchJourneys().subscribe((journeys) => {this.journeys = journeys});
+    this.fetchJourneys().subscribe((journey) => {this.journeys = journey});
     return this.journeys;
   }
 
-  getJourney(id: number): Journey {
+  getJourney(id: number, journeyList: Journey[]): Journey {
     let resJourney: Journey = {
         id: 0,
         title: '',
@@ -45,39 +46,54 @@ export class JourneyService {
         isJourneyFinished: false,
         steps: [],
     };
+    console.log("Journey-Service: getJourney()" + JSON.stringify(journeyList));
 
-    this.getJourneys();
-    this.journeys.find((journey) => {
-      if(journey.id == id)
-      {
+    journeyList.find((journey) => {
+      if(journey.id === id) {
         resJourney = journey;
+        console.log("resJourney found journey in list: " + resJourney);
       }
     });
     return resJourney;
   }
-  getSteps(id: number): Step[] {
-    let journey: Journey = this.getJourney(id);
+
+  getSteps(id: number, journeyList: Journey[]): Step[] {
+    let journey: Journey = this.getJourney(id, journeyList);
     return journey.steps;
   }
 
-  isFirstStep(id: number): boolean {
-    let journey = this.getJourney(id);
-    return (journey.currentStep == 1);
+  isFirstStep(id: number, journeyList: Journey[]): boolean {
+    let journey = this.getJourney(id, journeyList);
+    return (journey.currentStep === 1);
   }
 
-  isLastStep(id: number): boolean {
-    let journey = this.getJourney(id);
-    return (journey.currentStep == journey.amountSteps);
+  isLastStep(id: number, journeyList: Journey[]): boolean {
+    let journey = this.getJourney(id, journeyList);
+    return (journey.currentStep === journey.amountSteps);
   }
 
-  /**
-  Returns the list of Steps of the journey specified by id.
-
-  getJourneySteps(id: number): Observable<Step[] | any> {
-    const journey = JOURNEYS.find(journey => journey.id === id)!;
-    return of(Object.values(journey)[2]);
+  nextStep(id: number, journeyList: Journey[]): number {
+    let journey = this.getJourney(id, journeyList);
+    let nextStep = journey.currentStep += 1;
+    if(nextStep < journey.amountSteps) {
+      return nextStep;
+    }
+    else{
+      return journey.currentStep;
+    }
   }
-  */
+
+  previousStep(id: number, journeyList: Journey[]): number {
+    let journey = this.getJourney(id, journeyList);
+    let previousStep = journey.currentStep -= 1;
+    if(previousStep >= 1) {
+      return previousStep;
+    }
+    else {
+       return journey.currentStep;
+    }
+  }
+
   /**
   Returns whether the journey is in the first step
 

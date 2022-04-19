@@ -10,8 +10,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class JourneyListComponent implements OnInit {
 
-  journeys: Journey[] = [];
   selectedId: number = 0;
+  journeys: Journey[] = [];
   constructor(private journeyService: JourneyService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {

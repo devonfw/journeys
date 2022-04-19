@@ -1,15 +1,7 @@
-<div>
-<h2>Journey-Details</h2>
-<div *ngIf="selectJourney()">
-Id: {{journeyId}} <br>
-Title: {{title}}
-  <p>Amount of steps: {{amountSteps}}</p>
-  <p>Finished yet: {{isJourneyFinished}}</p>
-  <p *ngFor="let step of steps ">Journey Step ID: {{step.id}} <br> Content: {{step.content}}</p>
+<div *ngIf="journeysFetched == true">
+<h2>"{{title}}"</h2>
+  <a *ngFor="let step of steps " (click)="onSelect(step)">{{step.content}} <br></a>
+  <button (click)="next()"> Next > </button>
+
 </div>
-<p>
-  <button (click)="showOverview()"> Start Journey </button>
-</p>
 <router-outlet></router-outlet>
-<!--<button *ngIf="!isFirstStep()" type="button" (click)="goPrevious()" >< Previous</button> -->
-<!-- <button *ngIf="!isLastStep()" type="button" (click)="goNext()">Next ></button> -->
