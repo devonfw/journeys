@@ -11,20 +11,21 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class JourneyListComponent implements OnInit {
 
   journeys: Journey[] = [];
-  error: any;
   selectedId: number = 0;
   constructor(private journeyService: JourneyService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getJourneys();
+    this.fetchJourneys();
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = Number(params.get('id'));
       this.selectedId = id;
-    })
-  }
+      });
+   }
 
-  getJourneys():void {
-    this.journeys = this.journeyService.getJourneys();
+  fetchJourneys(): void {
+    this.journeyService.fetchJourneys().subscribe((journey) => {
+      this.journeys = journey;
+    });
   }
 
   onSelect(journey: Journey): void {

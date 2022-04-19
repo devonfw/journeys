@@ -2,6 +2,9 @@
   {
     "id": 1,
     "title": "Getting Started | Hello World",
+    "currentStep": 1,
+    "amountSteps": 3,
+    "isJourneyFinished": false,
     "steps": [
       {
         "id": 1,
@@ -18,15 +21,15 @@
         "isVisited": false,
         "content": "Step one of your Journey is accomplished"
       }
-    ],
-    "currentStep": 1,
-    "amountSteps": 3,
-    "journeyFinished": false
+    ]
   },
   {
     "id": 2,
     "title": "2nd Journey",
-    "steps": [
+    "currentStep": 1,
+    "amountSteps": 3,
+    "isJourneyFinished": false,
+        "steps": [
       {
         "id": 1,
         "isVisited": true,
@@ -42,15 +45,15 @@
         "isVisited": false,
         "content": "Step two of your Journey is accomplished"
       }
-    ],
-    "currentStep": 1,
-    "amountSteps": 3,
-    "journeyFinished": false
+    ]
   },
     {
     "id": 3,
     "title": "Last Journey",
-    "steps": [
+    "currentStep": 1,
+    "amountSteps": 3,
+    "isJourneyFinished": false,
+        "steps": [
       {
         "id": 1,
         "isVisited": false,
@@ -66,9 +69,6 @@
         "isVisited": false,
         "content": "FIN"
       }
-    ],
-    "currentStep": 1,
-    "amountSteps": 3,
-    "journeyFinished": false
+    ]
   }
 ]

@@ -31,7 +31,8 @@ export class JourneyService {
   }
 
   getJourneys(): Journey[] {
-    this.fetchJourneys().subscribe({next: (journey: Journey[]) => this.journeys = journey, error: (error: HttpErrorResponse) => {this.errorHandler(error)}});
+    //this.fetchJourneys().subscribe({next: (journey: Journey[]) => this.journeys = journey, error: (error: HttpErrorResponse) => {this.errorHandler(error)}});
+    this.fetchJourneys().subscribe((journeys) => {this.journeys = journeys});
     return this.journeys;
   }
 
@@ -39,10 +40,10 @@ export class JourneyService {
     let resJourney: Journey = {
         id: 0,
         title: '',
-        steps: [],
         currentStep: 0,
         amountSteps: 0,
-        journeyFinished: false
+        isJourneyFinished: false,
+        steps: [],
     };
 
     this.getJourneys();
@@ -61,12 +62,12 @@ export class JourneyService {
 
   isFirstStep(id: number): boolean {
     let journey = this.getJourney(id);
-    return (journey.currentStep === 1);
+    return (journey.currentStep == 1);
   }
 
   isLastStep(id: number): boolean {
     let journey = this.getJourney(id);
-    return (journey.currentStep === journey.amountSteps);
+    return (journey.currentStep == journey.amountSteps);
   }
 
   /**

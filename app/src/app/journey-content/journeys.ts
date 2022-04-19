@@ -1,12 +1,11 @@
 export interface Journey {
   id: number;
   title: string;
-  steps: Step[];
   //steps: Map<number, string[]>
   currentStep: number;
   amountSteps: number;
-  journeyFinished: boolean;
-
+  isJourneyFinished: boolean;
+  steps: Step[];
 }
 
 export interface Step {

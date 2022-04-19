@@ -11,8 +11,13 @@ import { Journey, Step } from '../journeys';
 export class JourneyDetailComponent implements OnInit {
 
   public journeyId: number = 0;
+  isJourneyExisting: boolean = false;
   journeys: Journey[] = [];
   journey?: Journey;
+  title: string = "";
+  currentStep: number = 0;
+  amountSteps: number = 0;
+  isJourneyFinished: boolean = false;
   steps: Step[] = [];
   error: any;
 
@@ -23,39 +28,54 @@ export class JourneyDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getJourneys();
+    this.fetchJourneys();
     this.route.paramMap.subscribe((params: ParamMap) =>{
       let id = Number(params.get('id'));
       this.journeyId = id;
+      this.steps = this.getSteps();
     });
+    this.isJourneyExisting = this.selectJourney();
 
     console.log("This Journeys ID: " + JSON.stringify(this.journeyId));
+    console.log("This Journeys Steps: " + JSON.stringify(this.steps));
+
+  }
+
+  fetchJourneys(): void {
+    this.journeyService.fetchJourneys().subscribe((journey) => {
+      this.journeys = journey;
+    });
+  }
+
+  selectJourney(): boolean {
+    let isJourneyExisting: boolean = false;
     this.journeys.find((journey) => {
       if(journey.id == this.journeyId)
       {
+        isJourneyExisting = true;
         this.journey = journey;
+        this.title = journey.title;
+        this.currentStep = journey.currentStep;
+        this.amountSteps = journey.amountSteps;
+        this.isJourneyFinished = journey.isJourneyFinished;
         this.steps = journey.steps;
       }
     });
-    console.log("This Journeys Steps: " + JSON.stringify(this.steps[0]));
-
+    return isJourneyExisting;
   }
 
-  getJourneys():void {
-    this.journeys = this.journeyService.getJourneys();
+  getSteps(): Step[] {
+    return this.journeyService.getSteps(this.journeyId);
+  }
+/*
+  isFirstStep(): boolean {
+    return this.journeyService.isFirstStep(this.journeyId);
   }
 
-  getSteps(): void {
-    this.journeys.find((journey) => this.steps = journey.steps)
+  isLastStep(): boolean {
+    return this.journeyService.isFirstStep(this.journeyId);
   }
-
-  isFirstStep(id: number): boolean {
-    return this.journeyService.isFirstStep(id);
-  }
-
-  isLastStep(id: number): boolean {
-    return this.journeyService.isFirstStep(id);
-  }
+  */
 
   goPrevious(): void {
     let previousId = this.journeyId - 1;
