@@ -5,11 +5,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { DataComponent } from './pages/data/data.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent,
-  children:[
-    { path: '',   redirectTo: 'journeys', pathMatch: 'full' },
-  ]
-  },
+  { path: 'home', component: HomeComponent},
+  { path: '', redirectTo: 'journeys', pathMatch: 'full' },
   { path: 'data', component: DataComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
