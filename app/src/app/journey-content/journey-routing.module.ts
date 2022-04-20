@@ -6,7 +6,7 @@ import { JourneyOverviewComponent } from './journey-overview/journey-overview.co
 
 const routes: Routes = [
     { path: 'journeys', component: JourneyListComponent},
-    { path: 'journeys/:id', component: JourneyDetailComponent},
+    { path: 'journeys/:journeyId', component: JourneyDetailComponent},
     { path: 'journeys/:journeyId/:stepId/overview', component: JourneyOverviewComponent }
 ];
 

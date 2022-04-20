@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError, catchError} from 'rxjs';
 import { Journey, Step} from './journeys';
-import { MessageService} from '../message.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 //TODO 1: Wo implementiere ich Journey zu ende ?
@@ -19,7 +18,7 @@ export class JourneyService {
 
   private _url: string = "../../../assets/journeyMOCKUP";
   private journeys: Journey[] = [];
-  constructor(private messageService: MessageService, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   fetchJourneys(): Observable<Journey[]> {
     return this.http.get<Journey[]>(this._url).pipe(
@@ -31,8 +30,6 @@ export class JourneyService {
   }
 
   getJourneys(): Journey[] {
-    let journeys: Promise<Journey[]>;
-    //this.fetchJourneys().subscribe({next: (journey: Journey[]) => this.journeys = journey, error: (error: HttpErrorResponse) => {this.errorHandler(error)}});
     this.fetchJourneys().subscribe((journey) => {this.journeys = journey});
     return this.journeys;
   }
@@ -46,12 +43,9 @@ export class JourneyService {
         isJourneyFinished: false,
         steps: [],
     };
-    console.log("Journey-Service: getJourney()" + JSON.stringify(journeyList));
-
     journeyList.find((journey) => {
       if(journey.id === id) {
         resJourney = journey;
-        console.log("resJourney found journey in list: " + resJourney);
       }
     });
     return resJourney;
@@ -62,6 +56,15 @@ export class JourneyService {
     return journey.steps;
   }
 
+  getContent(stepId: number, steps: Step[]): string {
+    let content = "";
+    steps.find((step) => {
+          if(step.id == stepId) {
+            content = step.content;
+          }
+        });
+    return content;
+  }
   isFirstStep(id: number, journeyList: Journey[]): boolean {
     let journey = this.getJourney(id, journeyList);
     return (journey.currentStep === 1);

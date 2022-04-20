@@ -10,50 +10,55 @@ import { Journey, Step } from '../journeys';
 })
 export class JourneyDetailComponent implements OnInit {
 
-  selectedId: number = 0;
+  selectedJourneyId: number = 0;
   journeys: Journey[] = [];
+  journey?: Journey;
   title: string = "";
   steps: Step[] = [];
-  journeysFetched:boolean = false;
+  journeyFetched:boolean = false;
 
   constructor(private journeyService: JourneyService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //this.fetchJourneys();
+    this.fetchJourneys();
     this.journeys = this.journeyService.getJourneys();
     this.route.paramMap.subscribe((params: ParamMap) => {
-      let id = Number(params.get('id'));
-      this.selectedId = id;
+      let id = Number(params.get('journeyId'));
+      this.selectedJourneyId = id;
     });
-   this.journeysFetched = this.selectJourney();
-
-    console.log("Title after Ng Init" + this.title);
+    this.initData();
+    this.journeyFetched = this.selectJourney(this.selectedJourneyId);
   }
 
-  selectJourney(): boolean {
+  fetchJourneys(): void {
+    this.journeyService.fetchJourneys().subscribe((journey) => {
+      this.journeys = journey;
+    });
+  }
+
+  initData(): void {
+    this.journey = this.journeyService.getJourney(this.selectedJourneyId, this.journeys);
+    this.title = this.journey.title;
+    this.steps = this.journey.steps;
+  }
+
+  selectJourney(journeyId: number): boolean {
     let isJourneyExisting: boolean = false;
     this.journeys.find((journey) => {
-      if(journey.id == this.selectedId) {
+      if(journey.id == journeyId) {
         isJourneyExisting = true;
-        this.title = journey.title;
-//        this.currentStep = journey.currentStep;
-//        this.amountSteps = journey.amountSteps;
-//        this.isJourneyFinished = journey.isJourneyFinished;
-        this.steps = journey.steps;
       }
     });
     return isJourneyExisting;
   }
 
   onSelect(step: Step): void {
-    //this.router.navigate(['journeys', journey.id])
     this.router.navigate([step.id, 'overview'], {relativeTo: this.route})
   }
 
-   next(): void {
-    //this.router.navigate(['journeys', journey.id])
+  start(): void {
     this.router.navigate([1, 'overview'], {relativeTo: this.route})
   }
 
-  isSelected(journey: Journey) { return journey.id === this.selectedId; }
+  isSelected(journey: Journey) { return journey.id === this.selectedJourneyId; }
 }

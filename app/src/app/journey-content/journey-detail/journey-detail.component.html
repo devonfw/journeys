@@ -1,7 +1,5 @@
-<div *ngIf="journeysFetched == true">
-<h2>"{{title}}"</h2>
+<div *ngIf="journeyFetched == true">
+  <h2>{{title}}</h2>
   <a *ngFor="let step of steps " (click)="onSelect(step)">{{step.content}} <br></a>
-  <button (click)="next()"> Next > </button>
-
+  <button (click)="start()"> Start </button>
 </div>
-<router-outlet></router-outlet>

@@ -10,27 +10,26 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 })
 export class JourneyOverviewComponent implements OnInit {
 
-  public journeyId: number = 0;
+  selectedJourneyId: number = 0;
   stepId: number = 0;
-  isJourneyExisting: boolean = false;
   journeys: Journey[] = [];
   journey?: Journey;
   title: string = "";
   currentStep: number = 0;
   amountSteps: number = 0;
-  isJourneyFinished: boolean = false;
   steps: Step[] = [];
   content: string = "";
-
+  journeyFetched: boolean = false;
   constructor(private journeyService: JourneyService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.journeys = this.journeyService.getJourneys();
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.journeyId = Number(params.get('journeyId'));
+      this.selectedJourneyId = Number(params.get('journeyId'));
       this.stepId = Number(params.get('stepId'));
     });
-    this.selectJourney();
+    this.initData();
+    this.journeyFetched = this.selectJourney(this.selectedJourneyId);
   }
 
   fetchJourneys(): void {
@@ -39,41 +38,32 @@ export class JourneyOverviewComponent implements OnInit {
     });
   }
 
-  selectJourney(): void {
-    this.journeys.find((journey) => {
-      if(journey.id == this.journeyId)
-      {
-        this.journey = journey;
-        this.title = journey.title;
-        this.currentStep = this.stepId;
-        this.amountSteps = journey.amountSteps;
-        this.isJourneyFinished = journey.isJourneyFinished;
-        this.steps = journey.steps;
-        this.steps.find((step) => {
-          if(step.id == this.stepId)
-          {
-            this.content = step.content;
-          }
-        })
-      }
-    });
+  initData(): void {
+    this.journey = this.journeyService.getJourney(this.selectedJourneyId, this.journeys);
+    this.title = this.journey.title;
+    this.steps = this.journeyService.getSteps(this.selectedJourneyId, this.journeys);
+    this.content = this.journeyService.getContent(this.stepId, this.steps);
+    this.currentStep = this.journey.currentStep;
+    this.amountSteps = this.journey.amountSteps;
   }
 
-  onSelect(journey: Journey): void {
-    //this.router.navigate(['journeys', journey.id])
-    this.router.navigate([journey.id, 'overview'], {relativeTo: this.route})
+  selectJourney(journeyId: number): boolean {
+    let isJourneyExisting: boolean = false;
+    this.journeys.find((journey) => {
+      if(journey.id == journeyId) {
+        isJourneyExisting = true;
+      }
+    });
+    return isJourneyExisting;
   }
 
   isNotFirstStep(): boolean {
-    //let result = this.journeyService.isFirstStep(this.journeyId, this.journeys);
     let result = (this.currentStep > 1);
-    console.log("Journey-overview-Component: isNotFirstStep() " + result + "currentStep : " + this.currentStep);
     return result
   }
 
   isNotLastStep(): boolean {
     let result = (this.currentStep < this.amountSteps)
-    console.log("Journey-overview-Component: isNotLastStep() " + result + "currentStep : " + this.currentStep);
     return result;
   }
 
@@ -102,18 +92,10 @@ export class JourneyOverviewComponent implements OnInit {
 
   updateContent(id: number): void {
     this.steps.find((step) => {
-          if(step.id == id)
-          {
+          if(step.id == id) {
             this.content = step.content;
           }
-        });
+    });
   }
 
-
-/*
-  getSteps(): Step[] {
-    return this.journeyService.getSteps(this.journeyId);
-  }
-
-  */
 }

@@ -10,15 +10,19 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class JourneyListComponent implements OnInit {
 
-  selectedId: number = 0;
+  selectedJourneyId: number = 0;
   journeys: Journey[] = [];
+  journeysFetched:boolean = false;
+
   constructor(private journeyService: JourneyService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    //TODO 1.1:  nur einmaliges Laden der Daten + Loading Page darstellen solange Daten noch nicht angekommen sind.
     this.fetchJourneys();
+    this.journeys = this.journeyService.getJourneys();
     this.route.paramMap.subscribe((params: ParamMap) => {
-      let id = Number(params.get('id'));
-      this.selectedId = id;
+      let id = Number(params.get('journeyId'));
+      this.selectedJourneyId = id;
       });
    }
 
@@ -29,10 +33,9 @@ export class JourneyListComponent implements OnInit {
   }
 
   onSelect(journey: Journey): void {
-    //this.router.navigate(['journeys', journey.id])
     this.router.navigate([journey.id], {relativeTo: this.route})
   }
 
-  isSelected(journey: Journey) { return journey.id === this.selectedId; }
+  isSelected(journey: Journey) { return journey.id === this.selectedJourneyId; }
 
 }
