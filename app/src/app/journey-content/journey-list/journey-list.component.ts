@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Journey } from '../journeys';
 import { JourneyService } from '../journey.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { MyCounterComponent } from '../../my-counter/my-counter.component';
 
 @Component({
   selector: 'app-journey-list',

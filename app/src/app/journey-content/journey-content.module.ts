@@ -5,12 +5,14 @@ import { JourneyRoutingModule } from './journey-routing.module';
 import { JourneyDetailComponent } from './journey-detail/journey-detail.component';
 import { JourneyListComponent } from './journey-list/journey-list.component';
 import { JourneyOverviewComponent } from './journey-overview/journey-overview.component';
+import { MyCounterComponent } from '../my-counter/my-counter.component';
 
 @NgModule({
   declarations: [
     JourneyDetailComponent,
     JourneyListComponent,
     JourneyOverviewComponent,
+    MyCounterComponent,
   ],
   imports: [
     CommonModule,

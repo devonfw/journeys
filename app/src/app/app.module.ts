@@ -17,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './journey-content/page-not-found/page-not-found.component';
 import { MessagesComponent } from './messages/messages.component';
 import { JourneyService } from './journey-content/journey.service';
-
+//NGRX imports
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './store/my-counter/counter.reducer';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { JourneyService } from './journey-content/journey.service';
     MatToolbarModule,
     MatSidenavModule,
     AppRoutingModule,
+    StoreModule.forRoot({ count: counterReducer })
   ],
   providers: [JourneyService],
   bootstrap: [AppComponent]
