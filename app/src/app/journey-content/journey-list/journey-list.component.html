@@ -1,7 +1,5 @@
 <h2>Journeys List</h2>
+<a [routerLink]="['/journeys','dummy']">
+  <span>dummy</span>
+</a>
 
-  <a *ngFor="let journey of journeys" (click)="onSelect(journey)" [class.selected]="isSelected(journey)">
-    <span>{{journey.title}}</span> <br>
-  </a>
-
-<app-my-counter></app-my-counter>
