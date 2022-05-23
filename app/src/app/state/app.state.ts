@@ -27,7 +27,7 @@ export interface StepData {
 export interface UiState {
   viewStatus: ViewStatus;
   errorMessage?: string;
-  currentStep: string; //geg. noch auf number oder StepId ändern
+  currentStep: number; //geg. noch auf number oder StepId ändern
 }
 
 export interface AppState {

@@ -1,9 +1,10 @@
 
 <div [ngStyle]="{display:'inline-flex', marginTop: '20px'} ">
-  
-  <div  [ngStyle]="{ marginLeft: '50px'}" *ngIf="(step$|async)">
-    <p>  {{(step$|async).steps[0].title}} </p>
-    <div [innerHTML]=(step$|async).steps[0].sections></div>
+  <div  [ngStyle]="{ marginLeft: '50px'}" *ngIf="(step$|async)" >
+    <p>
+      {{(step$|async).steps[(ui$|async).currentStep].title}}
+    </p>
+      <div [innerHTML]=(step$|async).steps[(ui$|async).currentStep].sections></div>
   </div>
 </div>  
 

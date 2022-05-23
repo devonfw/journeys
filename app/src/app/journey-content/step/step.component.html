@@ -1,6 +1,8 @@
 <div>
-  {{step.title}}
-  <app-step *ngFor = "let s of step.sections" [step]="s">
-     
-  </app-step>
+  <span (click)="onClick(step.title)">
+    {{step.title}}
+  </span>
+    <app-step  *ngFor = "let s of step.sections" [step]="s">
+  
+    </app-step>
 </div>

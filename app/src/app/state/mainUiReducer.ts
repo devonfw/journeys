@@ -11,7 +11,8 @@ export default function uiReducer(state, action) {
     }
     case loadJourneySuccess.type: {
       return {
-        ...state, viewStatus: ViewStatus.Success,
+        ...state,
+        viewStatus: ViewStatus.Success,
       }
     }
     case loadJourneyFailure.type: {
@@ -29,6 +30,7 @@ export default function uiReducer(state, action) {
         return {
           ...state,
           viewStatus: ViewStatus.Success,
+          currentStep: state.currentStep +1
         }
       }
     case loadStepFailure.type: {

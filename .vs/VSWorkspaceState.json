@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\src",
+    "\\app\\src\\app",
+    "\\app\\src\\app\\journey-content",
+    "\\app\\src\\app\\journey-content\\journey-detail",
+    "\\app\\src\\app\\journey-content\\step",
+    "\\app\\src\\app\\journey-content\\step-detail",
+    "\\app\\src\\app\\state",
+    "\\app\\src\\app\\state\\steps",
+    "\\app\\src\\app\\state\\steps\\reducers"
+  ],
+  "SelectedNode": "\\app\\src\\app\\journey-content\\step-detail\\step-detail.component.html",
+  "PreviewInSolutionExplorer": false
+}

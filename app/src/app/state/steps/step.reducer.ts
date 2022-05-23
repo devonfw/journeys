@@ -4,7 +4,7 @@ import dataReducer from './reducers/step.data.reducer'
 
 export const initialUiState: UiState = {
   viewStatus: ViewStatus.Initial,
-  currentStep: "",
+  currentStep: 0,
 }
 
 const initialJourneyData: JourneyData = {

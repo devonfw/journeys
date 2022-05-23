@@ -14,6 +14,7 @@ export default function uiReducer(state, action) {
       return {
         ...state,
         viewStatus: ViewStatus.Success,
+
       }
     }
     case loadStepFailure.type: {

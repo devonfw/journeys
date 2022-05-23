@@ -1,6 +1,7 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Step } from '../step';
+import { ActivatedRoute, Router, } from '@angular/router';
 
 @Component({
   selector: 'app-step',
@@ -11,11 +12,14 @@ export class StepComponent implements OnInit {
 
   @Input() step: any;
 
-  constructor() { console.log("constructor")}
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log("moin")
-    console.log(this.step.title)
-  }
 
+  } 
+  onClick(title: string) {
+    let stepId = title.replace(/\s/g, "");
+    this.router.navigate([this.router.url + ('/' + stepId)])
+
+  } 
 }
