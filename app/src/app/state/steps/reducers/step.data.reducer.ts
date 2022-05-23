@@ -6,11 +6,13 @@ export default function stepdataReducer(state, action) {
   switch (action.type) {
     case loadStepSuccess.type: {
       return {
-        ...state,
-        steps : [
-        
-        action.payload.title,
-        action.payload.sections,
+        //...state,
+        steps: [
+          ...state.steps,
+          {
+            title: action.payload.title,
+            sections: action.payload.sections,
+          }
         ]
       } 
     }

@@ -14,7 +14,12 @@ const initialJourneyData: JourneyData = {
   sections: [],
 }
 const initialStepData: StepData = {
-  steps: [],
+  steps: [
+      {
+      title: "",
+      sections: "",
+      }
+  ],
 }
 export const initialDataState: DataState = {
   journeyData: initialJourneyData,

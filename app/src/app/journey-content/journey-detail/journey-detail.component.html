@@ -2,7 +2,7 @@ Hallo
 
 <div [ngStyle]="{display:'inline-flex'}">
   <div *ngIf="(journey$|async) ">
-    <ol *ngFor="let root of (journey$|async).section">
+    <ol *ngFor="let root of (journey$|async).sections">
 
       <div id="sectionHeader">
         <app-step [step] ="root"> </app-step>

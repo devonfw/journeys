@@ -16,7 +16,12 @@ export interface JourneyData {
   sections: [];
 }
 export interface StepData {
-  steps: [];
+  steps: [
+    {
+      title: string,
+      sections: string,
+    }
+  ];
 }
 
 export interface UiState {
