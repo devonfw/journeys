@@ -1,13 +1,13 @@
-<div *ngIf="(journey$|async)">
-  <ol *ngFor = "let root of (journey$|async).section">
-    <p><br>
+Hallo
 
-      {{root.title}}
-    </p>
+<div [ngStyle]="{display:'inline-flex'}">
+  <div *ngIf="(journey$|async) ">
+    <ol *ngFor="let root of (journey$|async).section">
 
-    <div id="sectionHeader">  {{displaySteps(root, 0)}}</div>
+      <div id="sectionHeader">
+        <app-step [step] ="root"> </app-step>
+      </div>
+    </ol>
 
-  </ol>
-
-</div>t
-
+  </div>
+</div>

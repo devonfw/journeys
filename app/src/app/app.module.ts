@@ -18,17 +18,20 @@ import { PageNotFoundComponent } from './journey-content/page-not-found/page-not
 import { MessagesComponent } from './messages/messages.component';
 import { JourneyService } from './state/journeys/journey.service';
 import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { JourneyDetailComponent } from './journey-content/journey-detail/journey-detail.component';
 import { JourneyListComponent } from './journey-content/journey-list/journey-list.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { JourneyEffect } from './state/journeys/journey.effect';
-import appReducer from './state/journeys//journey.reducer';
-import { AppState, DataState } from './state/app.state';
-import {getAppState} from './state/journeys/journey.selector'
-
+import { appReducer } from './state/journeys//journey.reducer';
+import steppAppReducer from './state/steps/step.reducer'
+import { StepDetailComponent } from './journey-content/step-detail/step-detail.component'
+import { StepComponent } from './journey-content/step/step.component'
+import { StepService } from './state/steps/step.service';
+import { StepEffect } from './state/steps/step.effect';
+import { AppState } from './state/app.state'
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import {getAppState} from './state/journeys/journey.selector'
     DataComponent,
     JourneyDetailComponent,
     JourneyListComponent,
+    StepDetailComponent,
+    StepComponent
   ],
   imports: [
     BrowserModule,
@@ -54,15 +59,15 @@ import {getAppState} from './state/journeys/journey.selector'
     AppRoutingModule,
     CommonModule,
     JourneyRoutingModule,
-    StoreModule.forRoot({ journeyData: appReducer }),
+    StoreModule.forRoot({ appReducer }), //steppAppReducer
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([JourneyEffect])
+    EffectsModule.forRoot([JourneyEffect, StepEffect])
 
   ],
-  providers: [JourneyService],
+  providers: [JourneyService, StepService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,15 +1,24 @@
-import { ViewStatus, UiState, AppState, DataState } from '../app.state';
+import { ViewStatus, JourneyData, StepData,  UiState, AppState, DataState } from '../app.state';
 import uiReducer from './reducers/journey.ui.reducer'
 import dataReducer from './reducers/journey.data.reducer'
+import { ActionReducerMap } from '@ngrx/store';
 
 export const initialUiState: UiState = {
   viewStatus: ViewStatus.Initial,
+  currentStep: "",
 }
 
-export const initialDataState: DataState = {
-  title: "",
+const initialJourneyData: JourneyData = {
+  title: " ",
   journeyId: "",
-  section: [],
+  sections: [],
+}
+const initialStepData: StepData = {
+  steps: [],
+}
+export const initialDataState: DataState = {
+  journeyData: initialJourneyData,
+  stepData: initialStepData,
 }
 
 export const initialState: AppState = {
@@ -17,8 +26,10 @@ export const initialState: AppState = {
   dataState: initialDataState,
 };
 
-export default function appReducer(state = initialState, action) {
+
+export function appReducer(state = initialState, action): ActionReducerMap<AppState>  {
   return {
+    
     uiState: uiReducer(state.uiState , action),
     dataState: dataReducer(state.dataState, action)
   }

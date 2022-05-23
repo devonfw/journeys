@@ -1,6 +1,5 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { DataState, ViewStatus, UiState, AppState } from '../app.state';
-import * as fromStore from './journey.reducer';
+import { AppState } from '../app.state';
 
 export const getAppState = createFeatureSelector<AppState>("journeyData");
 

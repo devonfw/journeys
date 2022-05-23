@@ -6,13 +6,23 @@ export enum ViewStatus {
 }
 
 export interface DataState {
-  title: string;
-  journeyId: string;
-  section: [];
+  journeyData: JourneyData;
+  stepData: StepData;
 }
+
+export interface JourneyData {
+  title: string,
+  journeyId: string;
+  sections: [];
+}
+export interface StepData {
+  steps: [];
+}
+
 export interface UiState {
   viewStatus: ViewStatus;
   errorMessage?: string;
+  currentStep: string; //geg. noch auf number oder StepId ändern
 }
 
 export interface AppState {

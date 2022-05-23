@@ -1,0 +1,12 @@
+
+<div [ngStyle]="{display:'inline-flex', marginTop: '20px'} ">
+  <div id=" step-detail">
+    <app-journey-detail> </app-journey-detail>
+  </div>
+  <div  [ngStyle]="{ marginLeft: '50px'}" *ngIf="(step$|async)">
+    <p>  {{(step$|async).title}} </p>
+    <div [innerHTML]=(step$|async).section></div>
+  </div>
+</div>  
+
+
