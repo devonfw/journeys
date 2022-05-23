@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router , ParamMap } from '@angular/router';
 import { Journey } from '../journey';
 import { Store } from '@ngrx/store';
-import { AppState, DataState } from '../../state/app.state';
+import { AppState, DataState, JourneyData } from '../../state/app.state';
 import { Observable, tap } from 'rxjs';
 import { loadJourney } from '../../state/journeys/journey.actions';
 import { loadStep } from '../../state/steps/step.actions';
@@ -18,8 +18,8 @@ import { getStepDataState } from '../../state/steps/step.selector';
 })
 
 export class JourneyDetailComponent implements OnInit {
-  journey$: Observable<DataState>;
-  step$: Observable<DataState>;
+  journey$: Observable<JourneyData>;
+  //step$: Observable<StepData>;
 
   constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) {
    }

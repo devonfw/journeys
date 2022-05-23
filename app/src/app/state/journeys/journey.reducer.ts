@@ -27,10 +27,10 @@ export const initialState: AppState = {
 };
 
 
-export function appReducer(state = initialState, action): ActionReducerMap<AppState>  {
-  return {
+// export function appReducer(state = initialState, action): ActionReducerMap<AppState>  {
+//   return {
     
-    uiState: uiReducer(state.uiState , action),
-    dataState: dataReducer(state.dataState, action)
-  }
-}
+//     uiState: uiReducer(state.uiState , action),
+//     dataState: dataReducer(state.dataState, action)
+//   }
+// }

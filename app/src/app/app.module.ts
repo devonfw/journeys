@@ -25,7 +25,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { JourneyEffect } from './state/journeys/journey.effect';
-import { appReducer } from './state/journeys//journey.reducer';
+// import { appReducer } from './state/journeys//journey.reducer';
+import { appReducer } from './state/mainreducer';
 import steppAppReducer from './state/steps/step.reducer'
 import { StepDetailComponent } from './journey-content/step-detail/step-detail.component'
 import { StepComponent } from './journey-content/step/step.component'
@@ -59,7 +60,7 @@ import { AppState } from './state/app.state'
     AppRoutingModule,
     CommonModule,
     JourneyRoutingModule,
-    StoreModule.forRoot({ appReducer }), //steppAppReducer
+    StoreModule.forRoot({ appState: appReducer }), //steppAppReducer
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
