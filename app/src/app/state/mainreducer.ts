@@ -34,7 +34,6 @@ export const initialState: AppState = {
 
 
 export function appReducer(state = initialState, action)  {
-    console.log(action)
     return {
       uiState: mainUiReducer(state.uiState, action),
       dataState: dataReducer(state.dataState, action)
