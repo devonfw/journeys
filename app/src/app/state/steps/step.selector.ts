@@ -17,3 +17,8 @@ export const getUiState = createSelector(
   (state: AppState) => { return state.uiState }
   )
 
+  export const checkStepExistence = ({step_id: step_id}) => createSelector(
+    getAppState,
+    (state: AppState) => { return state.dataState.stepData.steps.filter(x => x.title == step_id).length > 0 }
+);
+
