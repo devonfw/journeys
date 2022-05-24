@@ -1,13 +1,10 @@
-Hallo
-
 <div [ngStyle]="{display:'inline-flex'}">
   <div *ngIf="(journey$|async) ">
     <ol *ngFor="let root of (journey$|async).sections">
+      <ol *ngFor="let r of root.sections">
+         <app-step [step]="r" [title]="r.title"> </app-step>
+        </ol>
+      </ol>
 
-      
-        <app-step [step] ="root"> </app-step>
-
-    </ol>
-
-  </div>
+</div>
 </div>

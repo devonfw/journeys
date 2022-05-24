@@ -19,7 +19,6 @@ import { getStepDataState } from '../../state/steps/step.selector';
 
 export class JourneyDetailComponent implements OnInit {
   journey$: Observable<JourneyData>;
-  //step$: Observable<StepData>;
 
   constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) {
    }

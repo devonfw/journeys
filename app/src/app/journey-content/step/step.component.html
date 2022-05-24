@@ -1,8 +1,7 @@
-<div>
-  <span (click)="onClick(step.title)">
+<div [ngStyle]="{marginLeft: '20px'}">
+  <span (click)="onClick(title)">
     {{step.title}}
+
   </span>
-    <app-step  *ngFor = "let s of step.sections" [step]="s">
-  
-    </app-step>
+    <app-step *ngFor="let s of step.sections" [step]="s" [title] ="title"></app-step>
 </div>
