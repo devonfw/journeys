@@ -11,28 +11,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DataComponent } from './pages/data/data.component';
-import { JourneyRoutingModule } from './journey-content/journey-routing.module';
-import { JourneyContentModule } from './journey-content/journey-content.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './journey-content/page-not-found/page-not-found.component';
 import { MessagesComponent } from './messages/messages.component';
 import { JourneyService } from './state/journeys/journey.service';
 import { CommonModule } from '@angular/common';
-import { ActionReducerMap, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { JourneyDetailComponent } from './journey-content/journey-detail/journey-detail.component';
 import { JourneyListComponent } from './journey-content/journey-list/journey-list.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { JourneyEffect } from './state/journeys/journey.effect';
-// import { appReducer } from './state/journeys//journey.reducer';
 import { appReducer } from './state/mainreducer';
-import steppAppReducer from './state/steps/step.reducer'
 import { StepDetailComponent } from './journey-content/step-detail/step-detail.component'
 import { StepComponent } from './journey-content/step/step.component'
 import { StepService } from './state/steps/step.service';
 import { StepEffect } from './state/steps/step.effect';
-import { AppState } from './state/app.state'
 
 @NgModule({
   declarations: [
@@ -48,7 +43,6 @@ import { AppState } from './state/app.state'
   ],
   imports: [
     BrowserModule,
-    JourneyRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatIconModule,
@@ -59,8 +53,7 @@ import { AppState } from './state/app.state'
     MatSidenavModule,
     AppRoutingModule,
     CommonModule,
-    JourneyRoutingModule,
-    StoreModule.forRoot({ appState: appReducer }), //steppAppReducer
+    StoreModule.forRoot({ appState: appReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
