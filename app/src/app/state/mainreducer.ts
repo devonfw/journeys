@@ -2,11 +2,9 @@ import { ViewStatus, JourneyData, StepData,  UiState, AppState, DataState } from
 import journeydataReducer from './journeys/reducers/journey.data.reducer'
 import stepdataReducer from './steps/reducers/step.data.reducer'
 import mainUiReducer from './mainUiReducer'
-import { combineReducers } from 'redux'
 
 export const initialUiState: UiState = {
   viewStatus: ViewStatus.Initial,
-  currentStep: 0,
 }
 
 const initialJourneyData: JourneyData = {
@@ -17,8 +15,8 @@ const initialJourneyData: JourneyData = {
 const initialStepData: StepData = {
   steps: [
       {
-      title: "DASGG",
-      sections: "AFHTDJQTJQETJHNRAZGZ",
+      title: "",
+      sections: "",
       }
   ],
 }
@@ -40,10 +38,11 @@ export function appReducer(state = initialState, action)  {
     }
   }
   
-  export function dataReducer(state, action)  {
+export function dataReducer(state, action) {
     return {
-      journeyData: journeydataReducer(state.journeyData , action),
+      journeyData: journeydataReducer(state.journeyData, action),
       stepData: stepdataReducer(state.stepData, action)
-    }
+    
   }
+}
   

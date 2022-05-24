@@ -1,11 +1,8 @@
 import { ViewStatus, JourneyData, StepData,  UiState, AppState, DataState } from '../app.state';
-import uiReducer from './reducers/journey.ui.reducer'
-import dataReducer from './reducers/journey.data.reducer'
-import { ActionReducerMap } from '@ngrx/store';
 
 export const initialUiState: UiState = {
   viewStatus: ViewStatus.Initial,
-  currentStep: "",
+  currentStep: 0,
 }
 
 const initialJourneyData: JourneyData = {

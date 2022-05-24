@@ -33,23 +33,6 @@ export class JourneyDetailComponent implements OnInit {
   }
  
 
-  displaySteps(journey: Journey, depth: number): void {
-    let id: string = journey.title;
-    document.getElementById("sectionHeader").innerHTML += `<div id="${id}" style='margin-left:${depth * 30}px '> - ${journey.title}</div>` + " " + "\n" ;
-
-    setTimeout(() => {
-      let elem = document.getElementById(id);
-      elem.addEventListener("click", () => {  
-        
-        let stepId = elem.id.replace(/\s/g, "");
-        this.router.navigate([this.router.url + ('/' + stepId)])
-
-      })
-    });
-    for(let i = 0; i < journey.sections.length; i++){
-      this.displaySteps(journey.sections[i], depth+1);
-    }
-  }
   
 }
 

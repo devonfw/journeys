@@ -4,9 +4,9 @@ Hallo
   <div *ngIf="(journey$|async) ">
     <ol *ngFor="let root of (journey$|async).sections">
 
-      <div id="sectionHeader" >
+      
         <app-step [step] ="root"> </app-step>
-      </div>
+
     </ol>
 
   </div>

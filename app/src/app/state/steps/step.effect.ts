@@ -4,7 +4,6 @@ import { map, mergeMap, exhaustMap, switchMap, catchError } from 'rxjs/operators
 import { StepService } from '../steps/step.service';
 import { of } from 'rxjs';
 import { loadStep, loadStepFailure, loadStepSuccess, } from "./step.actions"
-import { Step } from '../../journey-content/step'
 
 
 @Injectable()

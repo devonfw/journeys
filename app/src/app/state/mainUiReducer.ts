@@ -6,7 +6,7 @@ export default function uiReducer(state, action) {
   switch (action.type) {
     case loadJourney.type: {
       return {
-        ...state, viewStatus: ViewStatus.Loading,
+         ...state, viewStatus: ViewStatus.Loading,
       }
     }
     case loadJourneySuccess.type: {
@@ -30,7 +30,6 @@ export default function uiReducer(state, action) {
         return {
           ...state,
           viewStatus: ViewStatus.Success,
-          currentStep: state.currentStep +1
         }
       }
     case loadStepFailure.type: {
