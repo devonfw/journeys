@@ -1,13 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router , ParamMap } from '@angular/router';
-import { Journey } from '../journey';
 import { Store } from '@ngrx/store';
-import { AppState, DataState, JourneyData } from '../../state/app.state';
-import { Observable, tap } from 'rxjs';
+import { AppState, JourneyData } from '../../state/app.state';
+import { Observable } from 'rxjs';
 import { loadJourney } from '../../state/journeys/journey.actions';
-import { loadStep } from '../../state/steps/step.actions';
 import { getDataState } from '../../state/journeys/journey.selector';
-import { getStepDataState } from '../../state/steps/step.selector';
 
 
 @Component({

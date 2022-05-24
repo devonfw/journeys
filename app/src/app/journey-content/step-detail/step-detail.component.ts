@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { Journey } from '../journey';
 import { Store } from '@ngrx/store';
-import { AppState, DataState, StepData, UiState } from '../../state/app.state';
-import { Observable, tap } from 'rxjs';
+import { AppState, StepData } from '../../state/app.state';
+import { Observable } from 'rxjs';
 import { loadStep } from '../../state/steps/step.actions';
-import { getStepDataState, getUiState, checkStepExistence, findIndexStepExistence } from '../../state/steps/step.selector';
+import { getStepDataState, findIndexStepExistence } from '../../state/steps/step.selector';
 
 
 @Component({
@@ -18,9 +17,7 @@ import { getStepDataState, getUiState, checkStepExistence, findIndexStepExistenc
 export class StepDetailComponent implements OnInit {
 
   step$: Observable<StepData>;
-  ui$: Observable<UiState>;
-  inside$: Observable<Boolean>;
-  index$: Observable<number>
+  index$: Observable<number>;
 
   constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) {
   }
@@ -37,7 +34,6 @@ export class StepDetailComponent implements OnInit {
          
     });
     this.step$ = this.store.select(getStepDataState)
-    this.ui$ = this.store.select(getUiState)
   }
 
 }

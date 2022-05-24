@@ -2,7 +2,6 @@ import { ViewStatus, JourneyData, StepData,  UiState, AppState, DataState } from
 
 export const initialUiState: UiState = {
   viewStatus: ViewStatus.Initial,
-  currentStep: 0,
 }
 
 const initialJourneyData: JourneyData = {

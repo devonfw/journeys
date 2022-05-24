@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError, catchError, tap} from 'rxjs';
+import { Observable, throwError,} from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { DataState, AppState } from '../app.state';
 import { Store } from '@ngrx/store';
