@@ -28,7 +28,9 @@ export class StepDetailComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = params.get('stepId');
       console.log(id);
-      this.inside$ = this.store.select(checkStepExistence({step_id: "Architecture Principles"}))
+
+      this.inside$ = this.store.select(checkStepExistence({step_id: id}))
+
       this.inside$.subscribe(data=>{
         if(data===true) {
           console.log("gibts");
