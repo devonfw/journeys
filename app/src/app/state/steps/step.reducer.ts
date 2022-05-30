@@ -1,4 +1,6 @@
-import { ViewStatus, JourneyData, StepData,  UiState, AppState, DataState } from '../app.state';
+import { ViewStatus, UiState, AppState, DataState, JourneyData, StepData } from '../app.state';
+import uiReducer from './reducers/step.ui.reducer'
+import dataReducer from './reducers/step.data.reducer'
 
 export const initialUiState: UiState = {
   viewStatus: ViewStatus.Initial,
@@ -9,7 +11,7 @@ const initialJourneyData: JourneyData = {
   journeyId: "",
   sections: [],
 }
-const initialStepData: StepData = {
+const initialStepData: StepData= {
   steps: [
     {title: "",
     sections: "",
@@ -26,11 +28,10 @@ export const initialState: AppState = {
   dataState: initialDataState,
 };
 
+export default function steppAppReducer(state = initialState, action) {
 
-// export function appReducer(state = initialState, action): ActionReducerMap<AppState>  {
-//   return {
-    
-//     uiState: uiReducer(state.uiState , action),
-//     dataState: dataReducer(state.dataState, action)
-//   }
-// }
+  return {
+    uiState: uiReducer(state.uiState, action),
+    dataState: dataReducer(state.dataState, action)
+  }
+}

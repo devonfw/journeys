@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError,} from 'rxjs';
+import { Observable, throwError} from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { DataState, AppState } from '../app.state';
+import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
-import { Journey } from "../../journey-content/journey"
-
+import { Step } from "../../journey-content/step"
 
 @Injectable({
   providedIn: 'root'
 })
-export class JourneyService {
-  journey$: Observable<DataState>;
+export class StepService {
   constructor(private http: HttpClient, private store: Store<AppState>) { }
 
-  getJourney() {
-    return this.http.get('../../../assets/dummy.json') as Observable<Journey>
+  getStep(title: string) {
+    return this.http.get('../../../assets/'+ title +'.json') as Observable <Step>
+
 
   }
 
