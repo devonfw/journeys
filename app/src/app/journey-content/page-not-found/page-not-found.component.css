@@ -1,0 +1,10 @@
+.testdiv2error{
+    float: left;
+    background-color: #fafafa;
+    border-radius: 5px;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 80px;
+    padding-left: 16px;
+  }
