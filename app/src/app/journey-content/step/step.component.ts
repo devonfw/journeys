@@ -26,6 +26,7 @@ export class StepComponent implements OnInit {
 
     this.router.navigate(['/journeys', journeyId, stepId]);
 
+    //...
   }
 
 }
