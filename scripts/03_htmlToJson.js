@@ -89,13 +89,13 @@ dirList.forEach(file => {
                   title: this.title,
                   htmlContent: this.htmlContent,
                 };
-                fs.mkdir( `${__dirname}\\htmlJSON\\${path.parse(file).name}`, (err) => {
+                fs.mkdir( `${__dirname}\\..\\app\\src\\assets\\${path.parse(file).name}`, (err) => {
                   if(err) {
                     console.error("Error creating subdirectories while HTML -> JSON conversion: " + err);
                   }
                 });
                 fs.writeFile(
-                  `${__dirname}\\htmlJSON\\${path.parse(file).name}\\`+ this.id.toString() + ".json",
+                  `${__dirname}\\..\\app\\src\\assets\\${path.parse(file).name}\\`+ this.id.toString() + ".json",
                   JSON.stringify(content_json),
                   (err) => {
                     if (err) {
@@ -199,7 +199,7 @@ dirList.forEach(file => {
                   sections: this.subSections,
                 };
                 fs.writeFile(
-                  `${__dirname}\\htmlJSON\\${path.parse(file).name}\\output.json`,
+                  `${__dirname}\\..\\app\\src\\assets\\${path.parse(file).name}\\output.json`,
                   JSON.stringify(output_test),
                   (err) => {
                     if (err) {
