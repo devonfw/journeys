@@ -18,7 +18,7 @@ export class StepComponent implements OnInit {
   } 
   onClick(title: string) {
 
-    let stepId = title.replace(/\s/g, "");
+    let stepId = title;
 
     //this.router.navigate([this.router.url + ('/' + stepId)])
 

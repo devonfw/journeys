@@ -18,6 +18,7 @@ export interface JourneyData {
 export interface StepData {
   steps: [
     {
+      stepId: string,
       title: string,
       sections: string,
     }

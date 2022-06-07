@@ -17,7 +17,7 @@ import { getStepDataState, findIndexStepExistence } from '../../state/steps/step
 export class StepDetailComponent implements OnInit {
 
   step$: Observable<StepData>;
-  index$: Observable<number>;
+  index$: Observable<any>;
 
   constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) {
   }
