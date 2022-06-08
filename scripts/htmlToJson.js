@@ -103,7 +103,7 @@ dirList.forEach(file => {
                     }
                   }
                 );
-//app/src/assets
+                
                 //sections
                 this.subSections = [];
                 if (num == 0) {
