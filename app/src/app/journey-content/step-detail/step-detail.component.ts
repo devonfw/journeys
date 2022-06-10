@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState, StepData } from '../../state/app.state';
 import { Observable } from 'rxjs';
 import { loadStep } from '../../state/steps/step.actions';
-import { getStepDataState, findIndexStepExistence } from '../../state/steps/step.selector';
+import { getStepDataState, findIndexStepExistence, getJourneySection } from '../../state/steps/step.selector';
 
 
 @Component({
@@ -28,12 +28,47 @@ export class StepDetailComponent implements OnInit {
       this.index$ = this.store.select(findIndexStepExistence({ step_id: id }))
       this.index$.subscribe(data => {
         if (data == -1) {
+          let journeySection: any = this.store.select(getJourneySection)
+          journeySection.subscribe(sectionData => {
+            console.log(sectionData);
+            let stepIdData = sectionData.sections.filter(x => !!x && x.id == id)[0]
+            console.log(stepIdData)
+            if (stepIdData.sections.length > 0) {
+              let subIds: [];
+              let results = this.getSubSectionIds(stepIdData.sections, subIds)
+              console.log(results)
+            }
+            //
+            }),
+             
+          
           this.store.dispatch(loadStep({ stepId: id }));
         }
       });
          
     });
     this.step$ = this.store.select(getStepDataState)
+  }
+
+  getSubSectionIds(data: [], subIds) {
+      let subSections: any = data
+      for (let i = 0; i < subSections.length; i++) {
+        console.log(subSections[i].id)
+        console.log(subIds)
+        subIds.push(subSections[i].id)
+        console.log(subIds)
+        if (subSections[i].sections.length > 0) {
+          console.log("Recursion")
+          this.getSubSectionIds(subSections[i].sections, subIds)
+        }
+        
+        
+        
+      }
+        
+  
+    
+
   }
 
 }
