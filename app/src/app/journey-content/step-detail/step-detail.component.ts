@@ -5,7 +5,7 @@ import { AppState, StepData } from '../../state/app.state';
 import { Observable } from 'rxjs';
 import { loadStep } from '../../state/steps/step.actions';
 import { getStepDataState, findIndexStepExistence, getJourneySection } from '../../state/steps/step.selector';
-
+import {takeUntil, take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-step-detail',
@@ -18,6 +18,7 @@ export class StepDetailComponent implements OnInit {
 
   step$: Observable<StepData>;
   index$: Observable<any>;
+  journeySection$: Observable<any>;
 
   constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) {
   }
@@ -26,49 +27,40 @@ export class StepDetailComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = params.get('stepId');
       this.index$ = this.store.select(findIndexStepExistence({ step_id: id }))
-      this.index$.subscribe(data => {
+      
+      this.index$.pipe(take(1)).subscribe(data => {
         if (data == -1) {
-          let journeySection: any = this.store.select(getJourneySection)
-          journeySection.subscribe(sectionData => {
-            console.log(sectionData);
-            let stepIdData = sectionData.sections.filter(x => !!x && x.id == id)[0]
-            console.log(stepIdData)
-            if (stepIdData.sections.length > 0) {
-              let subIds: [];
-              let results = this.getSubSectionIds(stepIdData.sections, subIds)
-              console.log(results)
-            }
-            //
-            }),
-             
-          
           this.store.dispatch(loadStep({ stepId: id }));
+         
         }
+        this.journeySection$ = this.store.select(getJourneySection)
+        this.journeySection$.pipe(take(1)).subscribe(sectionData => {
+          let stepIdData = sectionData.sections.filter(x => !!x && x.id == id)[0]
+          if (stepIdData.sections.length > 0) {
+            console.log(stepIdData.sections)
+            this.getSubSectionIds(stepIdData.sections)
+          }
+          })
       });
          
     });
     this.step$ = this.store.select(getStepDataState)
   }
 
-  getSubSectionIds(data: [], subIds) {
-      let subSections: any = data
-      for (let i = 0; i < subSections.length; i++) {
-        console.log(subSections[i].id)
-        console.log(subIds)
-        subIds.push(subSections[i].id)
-        console.log(subIds)
-        if (subSections[i].sections.length > 0) {
-          console.log("Recursion")
-          this.getSubSectionIds(subSections[i].sections, subIds)
+  getSubSectionIds(data) {
+      for (let i = 0; i < data.length; i++) {
+        this.index$ = this.store.select(findIndexStepExistence({ step_id: data[i].id }))
+        this.index$.subscribe(indexData => {
+          console.log(indexData)
+          if (indexData == -1) {
+              console.log("loadStep")
+              this.store.dispatch(loadStep({ stepId: data[i].id }));
+          }})
+        if (data[i].sections.length > 0) {
+          console.log(data[i].sections)
+          this.getSubSectionIds(data[i].sections)
         }
-        
-        
-        
       }
-        
-  
-    
-
   }
 
 }
