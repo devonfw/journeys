@@ -1,6 +1,8 @@
-<div class = "steping">
-  <span (click)="onClick(title)">
-    {{step.title}}
-  </span>
-    <app-step *ngFor="let s of step.sections" [step]="s" [title] ="title"></app-step>
-</div>
+    <div class = "steping">
+      <span (click)="onClick(title)">
+        {{step.title}} 
+      </span>
+    </div>
+    <div id = "testappstep">
+      <app-step *ngFor="let s of step.sections" [step]="s" [title] ="title"></app-step>
+    </div>

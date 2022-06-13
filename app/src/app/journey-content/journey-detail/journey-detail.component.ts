@@ -27,7 +27,6 @@ export class JourneyDetailComponent implements OnInit {
     });
     this.journey$ = this.store.select(getDataState);
   }
- 
 
   
 }

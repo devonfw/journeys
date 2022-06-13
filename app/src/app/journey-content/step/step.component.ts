@@ -28,5 +28,4 @@ export class StepComponent implements OnInit {
 
     //...
   }
-
 }

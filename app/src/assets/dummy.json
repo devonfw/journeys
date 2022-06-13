@@ -26,7 +26,13 @@
         {
           "id": 3,
           "title": "Architecture Principles",
-          "sections": []
+          "sections": [
+            {
+              "id": 3,
+              "title": "Eine Liste",
+              "sections": []
+            }
+          ]
         },
         {
           "id": 4,
