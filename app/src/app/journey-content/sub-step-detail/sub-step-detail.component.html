@@ -1,1 +1,5 @@
 <div id="substepdetail"></div>
+
+<div *ngIf="(index$|async) >= 0 && (step$|async)">
+  <div [innerHTML]="(step$|async).steps[(index$|async)].sections">  </div>
+</div>

@@ -27,37 +27,31 @@ export class SubStepDetailComponent implements OnInit {
 
   ngOnInit(): void {
     let element = document.getElementById("substepdetail")
-    for (let i = 0; i < this.sections.length; i++) {
-      element.innerHTML += this.sections[i]
-      console.log(this.sections[i])
-    }
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      let id = params.get('stepId');
-      this.journeySection$ = this.store.select(getJourneySection)
-      this.journeySection$.pipe(take(1)).subscribe(sectionData => {
-        let stepIdData = sectionData.sections.filter(x => !!x && x.id == id)[0]
-        if (stepIdData.sections.length > 0) {
-          this.getSubSectionIds(stepIdData.sections)
-        }
-      })
-      this.index$ = this.store.select(findIndexStepExistence({ step_id: id }))
-    });
+
+   
+    console.log(this.sections)
+    this.getSubSections(this.sections)
     this.step$ = this.store.select(getStepDataState)
   }
 
-  getSubSectionIds(data) {
-    for (let i = 0; i < data.length; i++) {
-      this.index$ = this.store.select(findIndexStepExistence({ step_id: data[i].id }))
-      this.index$.subscribe(indexData => {
+
+  getSubSections(data) {
+      this.index$ = this.store.select(findIndexStepExistence({ step_id: data.id }))
+      this.index$.pipe(take(1)).subscribe(indexData => {
         if (indexData == -1) {
-          this.store.dispatch(loadStep({ stepId: data[i].id }));
+            this.store.dispatch(loadStep({ stepId: data.id }));
         }
       })
-      if (data[i].sections.length > 0) {
-        this.getSubSectionIds(data[i].sections)
+
+    if (data.sections.length > 0) {
+      for (let i = 0; i < data.sections.length; i++) {
+        this.getSubSections(data.sections[i])
+        }
       }
     }
+    
   }
-}
+
+
 
 
