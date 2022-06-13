@@ -3,16 +3,15 @@
 </div>
 
 <div class = "content">
-  <div  *ngIf ="(index$|async) >= 0 && (step$|async)">
-    <p>
+  <div *ngIf ="(index$|async) >= 0 && (step$|async)">
+    <p >
       {{(step$|async).steps[(index$|async)].title}}
     </p>
       <div [innerHTML]=(step$|async).steps[(index$|async)].sections></div>
   </div>
 
 </div>  
-
 <div class = "buttondiv">
-  <button class = "buttonleft buttondesign">Previous</button>
+  <button id = "dis" class = "buttonleft buttondesign">Previous</button>
   <button class = "buttonright buttondesign">Next </button>
 </div>  

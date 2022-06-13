@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AppState, StepData } from '../../state/app.state';
 import { Observable } from 'rxjs';
 import { loadStep } from '../../state/steps/step.actions';
 import { getStepDataState, findIndexStepExistence } from '../../state/steps/step.selector';
+import { MatButton } from '@angular/material/button';
+import { BuiltinFunctionCall } from '@angular/compiler/src/compiler_util/expression_converter';
 
 
 @Component({
@@ -14,7 +16,9 @@ import { getStepDataState, findIndexStepExistence } from '../../state/steps/step
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
+
 export class StepDetailComponent implements OnInit {
+
 
   step$: Observable<StepData>;
   index$: Observable<number>;
@@ -30,8 +34,15 @@ export class StepDetailComponent implements OnInit {
         if (data == -1) {
           this.store.dispatch(loadStep({ stepId: id }));
         }
+        console.log(data)
       });
-         
+
+      if (id == 'KeyPrinciples')  {
+        (document.getElementById('dis') as HTMLInputElement).disabled = true;
+
+        } else {
+          (document.getElementById('dis') as HTMLInputElement).disabled = false;
+        }
     });
     this.step$ = this.store.select(getStepDataState)
   }

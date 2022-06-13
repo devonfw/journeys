@@ -69,6 +69,19 @@ h1 {
 cursor: pointer;
 }
 
+
+button:disabled, button[ng-disabled]{
+  padding: auto;
+  margin: 16px;
+  width: 100px;
+  background-color: rgb(243, 243, 243);
+  color: white;
+  border: none;
+  padding: 8px;
+  font-size: large;
+  border-radius: 5px;
+}
+
 @media (max-width: 800px)  {
     
   .content {
