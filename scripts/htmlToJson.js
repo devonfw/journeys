@@ -2,17 +2,19 @@ const cheerio = require("cheerio");
 var fs = require("fs");
 const path = require("path");
 const { argv } = require("process");
-targetDir = __dirname + "\\htmlInputFiles";
+
+//journeysDir (htmlDir):  target/generated-docs/journeys
+//outputDir = "..\\target\\generated-docs\\website\\pages\\journeys\\'unterordner'";
 
 //INPUT: HTML File (check you're in the same folder as the html/right path + put the right name in line 7)
 //In this example, the html file tested is Communication.html
 /*OUTPUT: output_test_${htmlfilename}.json contains the structure of the html file. 
     + id.json contains section with the id "id" and its html Content*/
 //Run on Terminal with command: node scraperOO_angepasst.js
-
-const dirList = fs.readdirSync(targetDir);
+function main(journeysDir, outputDir) {
+const dirList = fs.readdirSync(journeysDir);
 dirList.forEach((file) => {
-  let pathToFile = targetDir + "\\" + file;
+  let pathToFile = journeysDir + "\\" + file;
   try {
     stat = fs.statSync(pathToFile);
     if (stat.isFile()) {
@@ -90,11 +92,11 @@ dirList.forEach((file) => {
 
             if (
               !fs.existsSync(
-                `${__dirname}\\..\\app\\src\\assets\\${path.parse(file).name}`
+                `${outputDir}\\${path.parse(file).name}`
               )
             ) {
               fs.mkdir(
-                `${__dirname}\\..\\app\\src\\assets\\${path.parse(file).name}`,
+                `${outputDir}\\${path.parse(file).name}`,
                 (err) => {
                   if (err) {
                     console.error(
@@ -107,7 +109,7 @@ dirList.forEach((file) => {
             }
 
             fs.writeFile(
-              `${__dirname}\\..\\app\\src\\assets\\${path.parse(file).name}\\` +
+              `${outputDir}\\${path.parse(file).name}\\` +
               this.id.toString() +
               ".json",
               JSON.stringify(content_json),
@@ -210,7 +212,7 @@ dirList.forEach((file) => {
               sections: this.subSections,
             };
             fs.writeFile(
-              `${__dirname}\\..\\app\\src\\assets\\${path.parse(file).name
+              `${outputDir}\\${path.parse(file).name
               }\\output.json`,
               JSON.stringify(output_test),
               (err) => {
@@ -230,3 +232,8 @@ dirList.forEach((file) => {
     console.error("Error stating file:", error);
   }
 });
+}
+
+if(process.argv.length >2) {
+  main(process.argv[2], process.argv[3]);
+}
