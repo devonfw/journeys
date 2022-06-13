@@ -12,10 +12,8 @@
     <div *ngFor="let root of (journey$|async).sections">
       <div *ngFor="let r of root.sections">
         <div *ngIf="r.title == (step$|async).steps[(index$|async)].title && r.sections.length > 0">
-          <div [innerHTML]="(step$|async).steps[(index$|async)+1].sections">
-            <div [innerHTML]="(step$|async).steps[(index$|async)+1].sections.sections">  </div>
-            </div>
-          </div>
+          <app-sub-step-detail [sections]="r.sections"></app-sub-step-detail>
+        </div>
       </div>
     </div>
   </div>

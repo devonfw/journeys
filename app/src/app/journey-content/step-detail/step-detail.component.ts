@@ -5,7 +5,7 @@ import { AppState, JourneyData, StepData } from '../../state/app.state';
 import { Observable } from 'rxjs';
 import { loadStep } from '../../state/steps/step.actions';
 import { getStepDataState, findIndexStepExistence, getJourneySection } from '../../state/steps/step.selector';
-import {takeUntil, take} from 'rxjs/operators';
+import { take} from 'rxjs/operators';
 import { getDataState } from '../../state/journeys/journey.selector';
 
 @Component({
@@ -37,33 +37,7 @@ export class StepDetailComponent implements OnInit {
         }
 
       })
-      this.journeySection$ = this.store.select(getJourneySection)
-      this.journeySection$.pipe(take(1)).subscribe(sectionData => {
-        let stepIdData = sectionData.sections.filter(x => !!x && x.id == id)[0]
-        if (stepIdData.sections.length > 0) {
-          this.getSubSectionIds(stepIdData.sections)
-        }
-      })
-
-      this.index$ = this.store.select(findIndexStepExistence({ step_id: id }))
-    });
-    this.step$ = this.store.select(getStepDataState)
+      this.step$ = this.store.select(getStepDataState)
+    })
   }
-
-  getSubSectionIds(data) {
-      for (let i = 0; i < data.length; i++) {
-        this.index$ = this.store.select(findIndexStepExistence({ step_id: data[i].id }))
-        this.index$.subscribe(indexData => {
-          console.log(indexData)
-          if (indexData == -1) {
-              console.log("loadStep")
-            this.store.dispatch(loadStep({ stepId: data[i].id }));
-          }})
-        if (data[i].sections.length > 0) {
-          console.log(data[i].sections)
-          this.getSubSectionIds(data[i].sections)
-        }
-      }
-  }
-
 }
