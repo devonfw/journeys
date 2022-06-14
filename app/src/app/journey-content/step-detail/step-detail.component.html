@@ -11,11 +11,10 @@
     <div *ngFor="let root of (journey$|async).sections">
       <div *ngFor="let r of root.sections">
         <div *ngFor="let subsec of r.sections">
-          <app-sub-step-detail *ngIf=" r.title == (stepData$|async).title" [sections]="r.sections"></app-sub-step-detail>
+          <app-sub-step-detail *ngIf=" r.title == (stepData$|async).title" [sections]="subsec"></app-sub-step-detail>
         </div>
       </div>
     </div>
-
   </div>  
 </div>
   <div class="buttondiv">
