@@ -34,15 +34,7 @@ export class StepDetailComponent implements OnInit {
         if (data == -1) {
           this.store.dispatch(loadStep({ stepId: id }));
         }
-        console.log(data)
       });
-
-      if (id == 'KeyPrinciples')  {
-        (document.getElementById('dis') as HTMLInputElement).disabled = true;
-
-        } else {
-          (document.getElementById('dis') as HTMLInputElement).disabled = false;
-        }
     });
     this.step$ = this.store.select(getStepDataState)
   }
