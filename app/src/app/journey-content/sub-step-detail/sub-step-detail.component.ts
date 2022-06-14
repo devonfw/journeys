@@ -26,6 +26,7 @@ export class SubStepDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.store.select(getStepData({ step_id: this.sections.id })).pipe(take(1)).subscribe(stepData => {
       if (stepData == null) {
         this.store.dispatch(loadStep({ stepId: this.sections.id }));
