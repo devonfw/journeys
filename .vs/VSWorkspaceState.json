@@ -8,9 +8,9 @@
     "\\app\\src\\app\\journey-content\\journey-detail",
     "\\app\\src\\app\\journey-content\\step",
     "\\app\\src\\app\\journey-content\\step-detail",
-    "\\app\\src\\app\\state",
-    "\\app\\src\\app\\state\\steps"
+    "\\app\\src\\assets",
+    "\\app\\src\\assets\\new"
   ],
-  "SelectedNode": "\\app\\src\\app\\journey-content\\journey-detail\\journey-detail.component.html",
+  "SelectedNode": "\\app\\src\\app\\journey-content\\step-detail\\step-detail.component.html",
   "PreviewInSolutionExplorer": false
 }

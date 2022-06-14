@@ -1,11 +1,12 @@
-import { Input } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 import { ActivatedRoute, Router, } from '@angular/router';
 
 @Component({
   selector: 'app-step',
   templateUrl: './step.component.html',
-  styleUrls: ['./step.component.scss']
+  styleUrls: ['./step.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class StepComponent implements OnInit {
 

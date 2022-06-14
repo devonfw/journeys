@@ -27,6 +27,8 @@ export interface StepData {
 
 export interface UiState {
   viewStatus: ViewStatus;
+  hasPrevStep?: boolean;
+  hasNextStep?: boolean;
   errorMessage?: string;
 }
 

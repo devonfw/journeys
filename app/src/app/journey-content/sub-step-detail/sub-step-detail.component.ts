@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState, JourneyData, StepData } from '../../state/app.state';
@@ -10,7 +10,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 @Component({
   selector: 'app-sub-step-detail',
   templateUrl: './sub-step-detail.component.html',
-  styleUrls: ['./sub-step-detail.component.scss']
+  styleUrls: ['./sub-step-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubStepDetailComponent implements OnInit {
 
@@ -19,37 +20,33 @@ export class SubStepDetailComponent implements OnInit {
 
   step$: Observable<StepData>;
   index$: Observable<any>;
-  journeySection$: Observable<any>;
   journey$: Observable<JourneyData>;
 
   constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    let element = document.getElementById("substepdetail")
+    console.log(this.sections.id)
+    this.index$ = this.store.select(findIndexStepExistence({ step_id: this.sections.id }))
+    this.index$.pipe(take(1)).subscribe(indexData => {
+      console.log(indexData)
+      if (indexData == -1) {
+        this.getSubSections(this.sections)
 
-   
-    console.log(this.sections)
-    this.getSubSections(this.sections)
+      }
+    })
     this.step$ = this.store.select(getStepDataState)
   }
 
 
   getSubSections(data) {
       this.index$ = this.store.select(findIndexStepExistence({ step_id: data.id }))
-      this.index$.pipe(take(1)).subscribe(indexData => {
+    this.index$.pipe(take(1)).subscribe(indexData => {
         if (indexData == -1) {
             this.store.dispatch(loadStep({ stepId: data.id }));
         }
       })
-
-    if (data.sections.length > 0) {
-      for (let i = 0; i < data.sections.length; i++) {
-        this.getSubSections(data.sections[i])
-        }
-      }
     }
-    
   }
 
 
