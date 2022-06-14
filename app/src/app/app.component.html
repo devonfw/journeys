@@ -52,7 +52,7 @@
 
 <header>
   <div id = "navbar">
-      <nav>
+      <nav style="display : flex; justify-content: space-between">
         <a [routerLink] ="['./journeys']" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}"><img id = "logo" src ="/assets/img/devonfw.PNG"></a>
           <div id = "nav-right">
               <ul>
@@ -62,14 +62,14 @@
                       <div class="dropdown-content">
                         <a [routerLink]="['./data']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Placeholder</a>
                         <a [routerLink]="['./data']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Placeholder</a>
-                        <a [routerLink]="['./data']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Placeholder</a> 
+                        <a [routerLink]="['./data']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Placeholder</a>
                       </div>
                     </div>
                   <li><a [routerLink]="['./data']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Placeholder</a></li>
                   <li><a [routerLink]="['./data']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Placeholder</a></li>
                   <li><a [routerLink]="['./data']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Placeholder</a></li>
                 </ul>
-                <a href = "https://github.com/devonfw/"><img id = "github" src = "/assets/img/github.PNG"></a>  
+                <a href = "https://github.com/devonfw/"><img id = "github" src = "/assets/img/github.PNG"></a>
           </div>
       </nav>
   </div>
