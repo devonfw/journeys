@@ -13,7 +13,7 @@
   </parent>
 
   <modules>
-  <module><module>title_of_journey_01</module><module>title_of_journey_02</module></modules>
+  </modules>
 
   <properties>
     <docgen.docsource>index.asciidoc</docgen.docsource>
