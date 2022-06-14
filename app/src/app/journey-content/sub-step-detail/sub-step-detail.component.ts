@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState, JourneyData, StepData } from '../../state/app.state';
+import { AppState, JourneyData, SingleStepData, StepData } from '../../state/app.state';
 import { loadStep } from '../../state/steps/step.actions';
-import { getStepDataState, findIndexStepExistence, getJourneySection } from '../../state/steps/step.selector';
+import { getStepData } from '../../state/steps/step.selector';
 import { take } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Step } from '../step';
 
 @Component({
   selector: 'app-sub-step-detail',
   templateUrl: './sub-step-detail.component.html',
   styleUrls: ['./sub-step-detail.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubStepDetailComponent implements OnInit {
 
@@ -19,28 +19,22 @@ export class SubStepDetailComponent implements OnInit {
 
 
   step$: Observable<StepData>;
-  index$: Observable<any>;
   journey$: Observable<JourneyData>;
+  stepData$: Observable<SingleStepData>
 
   constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-
-    this.getSubSections(this.sections)
-    this.step$ = this.store.select(getStepDataState)
+    this.store.select(getStepData({ step_id: this.sections.id })).pipe(take(1)).subscribe(stepData => {
+      if (stepData == null) {
+        this.store.dispatch(loadStep({ stepId: this.sections.id }));
+      }
+    })
+    console.log("omin")
+    this.stepData$ = this.store.select(getStepData({ step_id: this.sections.id }))
   }
-
-
-  getSubSections(data) {
-      this.index$ = this.store.select(findIndexStepExistence({ step_id: data.id }))
-    this.index$.pipe(take(1)).subscribe(indexData => {
-        if (indexData == -1) {
-            this.store.dispatch(loadStep({ stepId: data.id }));
-        }
-      })
-    }
-  }
+}
 
 
 

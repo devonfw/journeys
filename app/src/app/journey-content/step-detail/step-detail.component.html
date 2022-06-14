@@ -3,16 +3,15 @@
 </div>
 
 <div class="content">
-  <div *ngIf="(index$|async) >= 0 && (step$|async) && (journey$|async)">
+  <div *ngIf=" (journey$|async) && (stepData$|async)" >
     <p>
-      {{(step$|async).steps[(index$|async)].title}}
+      {{(stepData$|async).title}}
     </p>
-    <div [innerHTML]="(step$|async).steps[(index$|async)].sections">  </div>
+    <div [innerHTML]="(stepData$|async).sections">  </div>
     <div *ngFor="let root of (journey$|async).sections">
       <div *ngFor="let r of root.sections">
         <div *ngFor="let subsec of r.sections">
-          
-          <app-sub-step-detail *ngIf=" r.title == (step$|async).steps[(index$|async)].title" [sections]="subsec"></app-sub-step-detail>
+          <app-sub-step-detail *ngIf=" r.title == (stepData$|async).title" [sections]="r.sections"></app-sub-step-detail>
         </div>
       </div>
     </div>
