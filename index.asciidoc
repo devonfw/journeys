@@ -1,0 +1,23 @@
+//Category=coolCategory
+//Products=A cool product;Coolest product
+//Maturity level=Initial
+
+= Journeys
+
+Welcome to our new Journeys Website.
+
+== The first Journey 
+Below you will find Lorem Ipsum Journeys. Their central purpose are to see whether the asciidoc to html conversion is working.
+Below you will find Lorem Ipsum Journeys. Their central purpose are to see whether the asciidoc to html conversion is working.
+
+Below you will find Lorem Ipsum Journeys. Their central purpose are to see whether the asciidoc to html conversion is working.
+Below you will find Lorem Ipsum Journeys. Their central purpose are to see whether the asciidoc to html conversion is working.
+
+Below you will find Lorem Ipsum Journeys. Their central purpose are to see whether the asciidoc to html conversion is working.
+Below you will find Lorem Ipsum Journeys. Their central purpose are to see whether the asciidoc to html conversion is working.
+
+=== ABCDE
+Below you will find Lorem Ipsum Journeys. Their central purpose are to see whether the asciidoc to html conversion is working.
+Below you will find Lorem Ipsum Journeys. Their central purpose are to see whether the asciidoc to html conversion is working.
+
+== Another Journey
