@@ -2,7 +2,7 @@
   <div *ngIf="(journey$|async)">
     <ol *ngFor="let root of (journey$|async).sections">
       <ol *ngFor="let r of root.sections">
-         <app-step id ="appstep" [step]="r" [title]="r.title"> </app-step>
+         <app-step [step]="r" [title]="r.title"> </app-step>
         </ol>
       </ol>
   </div>
