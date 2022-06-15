@@ -4,7 +4,15 @@ import { Store } from '@ngrx/store';
 import { AppState, JourneyData, SingleStepData } from '../../state/app.state';
 import { Observable } from 'rxjs';
 import { loadStep } from '../../state/steps/step.actions';
-import {  getStepData } from '../../state/steps/step.selector';
+
+import {
+  getStepDataState,
+  findIndexStepExistence,
+  getJourneySection,
+  getUiState,
+  getFirstStep, getStepData
+} from '../../state/steps/step.selector';
+
 import { take} from 'rxjs/operators';
 import { getDataState } from '../../state/journeys/journey.selector';
 
@@ -42,9 +50,13 @@ export class StepDetailComponent implements OnInit {
     })
   }
 
-  onclick() {
 
-    (document.getElementById('diss') as HTMLInputElement).disabled = true;
-
+  displayNext(){
+    console.log("next button clicked");
+    this.store.select(getFirstStep).subscribe(stepid => {
+    })
   }
+  displayPrevious(){
+    console.log("previous button clicked");
+
 }
