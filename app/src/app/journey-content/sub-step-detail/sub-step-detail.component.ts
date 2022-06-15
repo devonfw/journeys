@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable} from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState, JourneyData, SingleStepData, StepData } from '../../state/app.state';
 import { loadStep } from '../../state/steps/step.actions';
 import { getStepData } from '../../state/steps/step.selector';
-import { take } from 'rxjs/operators';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Step } from '../step';
+import { first} from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sub-step-detail',
@@ -26,10 +25,9 @@ export class SubStepDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.store.select(getStepData({ step_id: this.sections.id })).pipe(take(1)).subscribe(stepData => {
+     this.store.select(getStepData({ step_id: this.sections.id })).pipe(first()).subscribe(stepData => {
       if (stepData == null) {
-        this.store.dispatch(loadStep({ stepId: this.sections.id }));
+         this.store.dispatch(loadStep({ stepId: this.sections.id }));
       }
     })
     console.log("omin")
