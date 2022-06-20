@@ -42,8 +42,7 @@ export function appReducer(state = initialState, action) {
 export function dataReducer(state, action) {
     return {
       journeyData: journeydataReducer(state.journeyData, action),
-      stepData: stepdataReducer(state.stepData, action)
-    
+      stepData: stepdataReducer(state.stepData, action),
   }
 }
   

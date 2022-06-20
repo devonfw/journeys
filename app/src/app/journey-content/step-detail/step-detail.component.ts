@@ -8,7 +8,7 @@ import { loadStep } from '../../state/steps/step.actions';
 import {getUiState, getStepData, getStepArray,} from '../../state/steps/step.selector';
 
 import { take} from 'rxjs/operators';
-import { getDataState } from '../../state/journeys/journey.selector';
+import { getDataState, getFirstStep } from '../../state/journeys/journey.selector';
 
 @Component({
   selector: 'app-step-detail',
@@ -46,6 +46,7 @@ export class StepDetailComponent implements OnInit {
         let currentStepId = this.route.snapshot.url[2].path;
         let nextStepId = +currentStepId + +1
         let nextStepExistence = journeySections.sections.find(x => x.id == nextStepId)
+        //selector get last step und damit abfrage bauen
         if (!nextStepExistence) {
           (document.getElementById('nextButton') as HTMLInputElement).disabled = true
         }
@@ -55,12 +56,16 @@ export class StepDetailComponent implements OnInit {
 
         let previousStepId = +currentStepId - +1
         let previousStepExistence = journeySections.sections.find(x => x.id == previousStepId)
-        if (!previousStepExistence) {
-          (document.getElementById('previousButton') as HTMLInputElement).disabled = true
-        }
-        else {
-          (document.getElementById('previousButton') as HTMLInputElement).disabled = false
-        }
+        let firstStep;
+        this.store.select(getFirstStep).subscribe(data => {
+           firstStep = data;
+          if (firstStep.id != id) {
+            (document.getElementById('previousButton') as HTMLInputElement).disabled = true
+          }
+          else {
+            (document.getElementById('previousButton') as HTMLInputElement).disabled = false
+          }
+        })
       })
     })
   }
