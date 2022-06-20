@@ -5,6 +5,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { loadJourney } from '../../state/journeys/journey.actions';
 import { Observable } from 'rxjs';
+import { resetStore } from '../../state/reset.action';
+
 @Component({
   selector: 'app-journey-list',
   templateUrl: './journey-list.component.html',
@@ -18,8 +20,8 @@ export class JourneyListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(resetStore())
   }
-
   }
 
 
