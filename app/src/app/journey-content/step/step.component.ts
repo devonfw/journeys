@@ -25,7 +25,6 @@ export class StepComponent implements OnInit {
     //hier nach der first id fragen und dann router mit stepID
     let firstStep;
     this.store.select(getStepsLength).subscribe(data => {
-      console.log(data)
       if (data <= 1) {
         this.store.select(getFirstStep).pipe(take(1)).subscribe(firsStepData => {
           firstStep = firsStepData

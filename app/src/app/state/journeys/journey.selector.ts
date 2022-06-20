@@ -13,3 +13,8 @@ export const getFirstStep  =  createSelector(
   getAppState,
   (state: AppState) => { return state.dataState.journeyData.sections.find((value, index) => index === 0)}
  )
+
+ export const getLastStep  =  createSelector(
+  getAppState,
+  (state: AppState) => { return state.dataState.journeyData.sections.find((value, index) => index === state.dataState.journeyData.sections.length -1 )}
+ )
