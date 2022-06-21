@@ -96,8 +96,7 @@ dirList.forEach((file) => {
               )
             ) 
             {
-              console.log("Creating outputdir: " + outputDir);
-              fs.mkdir(
+              fs.mkdirSync(
                 `${outputDir}/${path.parse(file).name}`,
                 {recursive: true},
                 (err) => {
@@ -110,7 +109,6 @@ dirList.forEach((file) => {
                 }
               );
             }
-
             fs.writeFile(
               `${outputDir}/${path.parse(file).name}/` +
               this.id.toString() +
