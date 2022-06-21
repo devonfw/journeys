@@ -5,6 +5,11 @@ for d in $(find journeys -name 'target'); do
     rm -r $d
 done
 
+ls -l 
+for d in $(find target -name '.flattened-pom.xml'); do 
+    rm $d
+done
+
 rm target/generated-docs/journeys/journey-pom-template.xml
 rm -r target/generated-docs/scripts
 

@@ -15,7 +15,7 @@ function main(journeysDir, outputDir) {
 const dirList = fs.readdirSync(journeysDir);
 outputDir = path.join("./", outputDir);
 dirList.forEach((file) => {
-  let pathToFile = journeysDir + "\\" + file;
+  let pathToFile = journeysDir + "/" + file;
   try {
     stat = fs.statSync(pathToFile);
     if (stat.isFile()) {
@@ -93,11 +93,11 @@ dirList.forEach((file) => {
 
             if (
               !fs.existsSync(
-                `${outputDir}\\${path.parse(file).name}`
+                `${outputDir}/${path.parse(file).name}`
               )
             ) {
               fs.mkdir(
-                `${outputDir}\\${path.parse(file).name}`,
+                `${outputDir}/${path.parse(file).name}`,
                 (err) => {
                   if (err) {
                     console.error(
@@ -110,7 +110,7 @@ dirList.forEach((file) => {
             }
 
             fs.writeFile(
-              `${outputDir}\\${path.parse(file).name}\\` +
+              `${outputDir}/${path.parse(file).name}/` +
               this.id.toString() +
               ".json",
               JSON.stringify(content_json),
@@ -213,8 +213,8 @@ dirList.forEach((file) => {
               sections: this.subSections,
             };
             fs.writeFile(
-              `${outputDir}\\${path.parse(file).name
-              }\\output.json`,
+              `${outputDir}/${path.parse(file).name
+              }/output.json`,
               JSON.stringify(output_test),
               (err) => {
                 if (err) {
