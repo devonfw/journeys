@@ -10,9 +10,9 @@ ls -l
 #    rm $d
 #done
 #
-#rm target/generated-docs/journeys/journey-pom-template.xml
-#rm -r target/generated-docs/scripts
+rm ../target/generated-docs/journeys/journey-pom-template.xml
+rm -r ../target/generated-docs/scripts
 ls scripts/ -l
 ls journeys/ -l
 
-node scripts/htmlToJson.js target/generated-docs/journeys target/generated-docs/journeys/journeyData
+node scripts/htmlToJson.js ../target/generated-docs/journeys ../target/generated-docs/journeys/journeyData
