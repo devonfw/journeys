@@ -13,7 +13,6 @@ const { argv } = require("process");
 //Run on Terminal with command: node scraperOO_angepasst.js
 function main(journeysDir, outputDir) {
 const dirList = fs.readdirSync(journeysDir);
-outputDir = path.join("./", outputDir);
 dirList.forEach((file) => {
   let pathToFile = journeysDir + "/" + file;
   try {
@@ -90,12 +89,14 @@ dirList.forEach((file) => {
               title: this.title,
               sections: this.htmlContent,
             };
-
+            
             if (
               !fs.existsSync(
                 `${outputDir}/${path.parse(file).name}`
               )
-            ) {
+            ) 
+            {
+              console.log("Creating outputdir: " + outputDir);
               fs.mkdir(
                 `${outputDir}/${path.parse(file).name}`,
                 {recursive: true},
