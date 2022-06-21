@@ -6,11 +6,13 @@ for d in $(find journeys -name 'target'); do
 done
 
 ls -l 
-for d in $(find target -name '.flattened-pom.xml'); do 
-    rm $d
-done
-
-rm target/generated-docs/journeys/journey-pom-template.xml
-rm -r target/generated-docs/scripts
+#for d in $(find target -name '.flattened-pom.xml'); do 
+#    rm $d
+#done
+#
+#rm target/generated-docs/journeys/journey-pom-template.xml
+#rm -r target/generated-docs/scripts
+ls scripts/ -l
+ls journeys/ -l
 
 node scripts/htmlToJson.js target/generated-docs/journeys target/generated-docs/journeys/journeyData
