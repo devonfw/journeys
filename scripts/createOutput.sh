@@ -12,7 +12,8 @@ ls -l
 #
 rm ../target/generated-docs/journeys/journey-pom-template.xml
 rm -r ../target/generated-docs/scripts
-ls scripts/ -l
-ls journeys/ -l
 
+ls journeys/ -l
+ls ../target/generated-docs/ -l
+ls ../target/generated-docs/journeys -l
 node scripts/htmlToJson.js ../target/generated-docs/journeys ../target/generated-docs/journeys/journeyData
