@@ -98,6 +98,7 @@ dirList.forEach((file) => {
             ) {
               fs.mkdir(
                 `${outputDir}/${path.parse(file).name}`,
+                {recursive: true},
                 (err) => {
                   if (err) {
                     console.error(
