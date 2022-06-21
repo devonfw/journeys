@@ -17,6 +17,7 @@ export class StepComponent implements OnInit {
 
   @Input() step: any;
   @Input() title: any;
+  @Input() subtitle: any;
 
   constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) { }
 
@@ -42,10 +43,11 @@ export class StepComponent implements OnInit {
      
 
   } 
-  onClick(title: string) {
+  onClick(title: string, href?: string) {
     let stepId = title;
+    console.log(href)
     let journeyId = this.route.snapshot.url[1].path;
-    this.router.navigate(['/journeys', journeyId, stepId]);
+      this.router.navigate(['/journeys', journeyId, stepId,]);
     //this.router.navigate([this.router.url + ('/' + stepId)])
   }
 
