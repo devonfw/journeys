@@ -14,7 +14,6 @@ export class JourneyService {
   constructor(private http: HttpClient, private store: Store<AppState>) { }
 
   getJourney() {
-    console.log(window.location.pathname)
     // return this.http.get('../../../assets/output.json') as Observable<Journey>
     return this.http.get('/website/pages/journeys/journeyData/index/output.json') as Observable<Journey>
 
