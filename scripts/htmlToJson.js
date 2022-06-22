@@ -70,6 +70,7 @@ dirList.forEach((file) => {
               } else {
                 this.htmlContent = $.html(
                   $(wrap_element).children(".sectionbody")
+                  
                 );
                 if (this.htmlContent === null || this.htmlContent == "") {
                   this.htmlContent = "";
@@ -82,6 +83,7 @@ dirList.forEach((file) => {
                       }
                     });
                 }
+                this.htmlContent = $.html($(this.wrap_element).children(`h${num+1}`)) + this.htmlContent;
               }
             }
             //write id.json
@@ -194,6 +196,7 @@ dirList.forEach((file) => {
                   }
                 });
             }
+            content = $.html($(this.wrap_element).children(`h${k}`)) + content; 
             return content;
           }
 
