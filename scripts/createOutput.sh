@@ -8,7 +8,4 @@ done
 rm ../target/generated-docs/journeys/journey-pom-template.xml
 rm -r ../target/generated-docs/scripts
 
-ls ../target/generated-docs/journeys -l
 node scripts/htmlToJson.js ../target/generated-docs/journeys ../target/generated-docs/journeys/journeyData
-
-ls ../target/generated-docs/journeys/journeyData -l
