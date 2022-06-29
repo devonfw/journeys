@@ -19,9 +19,4 @@ export const getFirstStep  =  createSelector(
   (state: AppState) => { return state.dataState.journeyData.sections.find((value, index) => index === state.dataState.journeyData.sections.length -1 )}
  )
 
-export const getCurrentStep = ({ step_id: step_id }) => createSelector(
-  getAppState,
-  (state: AppState) => { return state.dataState.journeyData.sections.find((value, index) => index === step_id )}
-)
-
 
