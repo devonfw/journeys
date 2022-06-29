@@ -40,17 +40,15 @@ export class StepComponent implements OnInit {
   }
 
 
-
   onClick(routerTitle: string, stepTitle: string) {
-    console.log("stepTitle: " + stepTitle)
-    console.log("routerTitle: " + routerTitle)
+
     changeColour(stepTitle)
+
     let stepId = routerTitle;
     let journeyId = this.route.snapshot.url[1].path;
     this.router.navigate(['/journeys', journeyId, stepId]);
     //this.router.navigate([this.router.url + ('/' + stepId)])
   }
-
 
 
 
